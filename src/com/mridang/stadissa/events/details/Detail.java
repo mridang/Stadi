@@ -16,16 +16,13 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 
+import com.bugsense.trace.BugSenseHandler;
 import com.google.android.maps.MapActivity;
 import com.mridang.stadissa.R;
 import com.mridang.stadissa.events.details.asynctasks.Detailer;
 
 public class Detail extends MapActivity {
 
-    /*
-     * The address of the page from which to scrape the details
-     */
-    public static final String strIdentifier = "EVENT_ID";
     /*
      * The instance of the background asynchronous task
      */
@@ -51,6 +48,7 @@ public class Detail extends MapActivity {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        BugSenseHandler.initAndStartSession(this, "f07273d6");
         setContentView(R.layout.detail);
         setTitle(this.getIntent().getStringExtra("EVENT_NAME"));
 

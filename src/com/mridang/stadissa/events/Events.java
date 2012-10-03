@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.bugsense.trace.BugSenseHandler;
 import com.mridang.stadissa.R;
 import com.mridang.stadissa.events.adapters.EventsAdapter;
 import com.mridang.stadissa.events.asyncloaders.Scraper;
@@ -67,7 +68,10 @@ public class Events extends Fragment implements LoaderCallbacks<ArrayList<Event>
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        BugSenseHandler.initAndStartSession(this.getActivity(), "f07273d6");
 
+        System.out.println(this.intWeek);
+        System.out.println(savedInstanceState);
         getLoaderManager().initLoader(this.intWeek, savedInstanceState, this);
 
     }
@@ -101,7 +105,7 @@ public class Events extends Fragment implements LoaderCallbacks<ArrayList<Event>
                 public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
 
                     Intent ittDetail = new Intent(Events.this.getActivity().getApplicationContext(), Detail.class);
-                    ittDetail.putExtra(Detail.strIdentifier, ((Event) objAdapter.lstItems.get(position)).getIdentifier());
+                    ittDetail.putExtra("EVENT_ID", ((Event) objAdapter.lstItems.get(position)).getIdentifier());
                     ittDetail.putExtra("EVENT_NAME", ((Event) objAdapter.lstItems.get(position)).getName());
                     Events.this.startActivity(ittDetail);
 
