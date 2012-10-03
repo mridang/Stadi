@@ -1,5 +1,6 @@
 package com.mridang.stadissa.events.adapters;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import android.view.LayoutInflater;
@@ -125,6 +126,8 @@ public class EventsAdapter extends BaseAdapter  {
             TextView tvwCategory = (TextView) vewRow.findViewById(R.id.category);
             tvwCategory.setText(this.objEvents.getString(objEvent.getCategory().name().toLowerCase()));
             vewRow.setTag(objEvent.getIdentifier());
+            TextView tvwHour = (TextView) vewRow.findViewById(R.id.hour);
+            tvwHour.setText(new SimpleDateFormat("HH").format(objEvent.getDate()));
 
             return vewRow;
 
