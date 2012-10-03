@@ -21,9 +21,9 @@ public class Main extends FragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
         BugSenseHandler.initAndStartSession(this, "f07273d6");
-        
+        setContentView(R.layout.main);
+
         ViewPager vpaPager = (ViewPager) findViewById(R.id.viewpager);
         TitlePageIndicator tpiIndicator = (TitlePageIndicator) findViewById(R.id.indicator);
 
