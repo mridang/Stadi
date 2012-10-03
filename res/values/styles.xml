@@ -1,0 +1,49 @@
+<resources>
+
+    <!-- Listviews to show the results and torrents -->
+    <style name="lists">
+        <item name="android:background">@color/bg_list</item>
+        <item name="android:cacheColorHint">@color/bg_list</item>
+        <item name="android:divider">@null</item>
+        <item name="android:dividerHeight">0.0px</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:listSelector">@drawable/bg_transparent_item</item> 
+        <item name="android:smoothScrollbar">true</item>
+        <item name="android:soundEffectsEnabled">true</item>
+    </style>
+
+    <!-- Elements in the top row of a cell e.g. date and indexer -->
+    <style name="celltop">
+        <item name="android:textSize">12.0dip</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/text_light</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:paddingBottom">0dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+    </style>    
+    
+    <!-- Title of the cell -->
+    <style name="celltitle">
+        <item name="android:textSize">16.0dip</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:paddingBottom">2.0dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    
+    <!-- Individual item in a ListView -->    
+    <style name="ListItem">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+    </style>
+
+</resources>

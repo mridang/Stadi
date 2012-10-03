@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#fff7f7f7"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:visibility="gone" />
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fadingEdge="none"
+        android:fadingEdgeLength="0.0dip"
+        android:fillViewport="true" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="60.0dip" >
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <com.google.android.maps.MapView
+                    android:id="@+id/map"
+                    android:layout_width="fill_parent"
+                    android:clickable="true"
+                    android:layout_height="160.0dip"
+                    android:apiKey="00CE3bsLg93dUHn4u0Qm6-t-IiRHjyn0tvICumQ"/>
+                <!-- android:apiKey="0ReTgVC9kXgj2eHPNwHdw62FHprotYUl7imMwkg" -->
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="130.0dip"
+                    android:background="@drawable/event_detail_get_direction_button_background" />
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:contentDescription="@string/map"
+                    android:scaleType="center"
+                    android:src="@drawable/ridge_down_f7f7f7" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible" >
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10.0dip"
+                    android:layout_marginLeft="17dip"
+                    android:paddingLeft="5dp"
+                    android:layout_marginRight="10.0dip"
+                    android:layout_marginTop="10.0dip"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:shadowColor="#ffffffff"
+                    android:shadowDy="3.0"
+                    android:shadowRadius="3.0"
+                    android:singleLine="false"
+                    android:text="@string/name"
+                    android:textColor="#ff414141"
+                    android:textSize="18.0dip"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2.0dip"
+                    android:layout_marginLeft="17dip"
+                    android:paddingLeft="5dp"
+                    android:layout_marginRight="10.0dip"
+                    android:text="@string/time"
+                    android:textColor="#ff818181"
+                    android:textSize="13.0dip" />
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15.0dip"
+                    android:layout_marginLeft="17dip"
+                    android:paddingLeft="5dp"
+                    android:layout_marginRight="10.0dip"
+                    android:text="@string/price"
+                    android:textColor="#ff818181"
+                    android:textSize="13.0dip" />
+                
+                <TextView
+                    android:id="@+id/place"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="17dip"
+                    android:paddingLeft="5dp"
+                    android:layout_marginRight="10.0dip"
+                    android:text="@string/location"
+                    android:textColor="#ff818181"
+                    android:textSize="13.0dip"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10.0dip"
+                    android:layout_marginLeft="17dip"
+                    android:paddingLeft="5dp"
+                    android:layout_marginRight="10.0dip"
+                    android:text="@string/location"
+                    android:textColor="#ff818181"
+                    android:textSize="13.0dip"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15.0dip"
+                    android:layout_marginLeft="10.0dip"
+                    android:background="@drawable/round_corner_edge"
+                    android:layout_marginRight="10.0dip"
+                    android:orientation="vertical"
+                    android:padding="10.0dip" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5.0dip"
+                        android:paddingTop="5dp" >
+
+                        <TextView
+                            android:layout_width="0.0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1.0"
+                            android:paddingLeft="7.0dip"
+                            android:text="@string/description"
+                            android:textAllCaps="true"
+                            android:textColor="#ff515151"
+                            android:textSize="13.0dip"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="2.0dip"
+                        android:layout_marginBottom="10.0dip"
+                        android:background="@drawable/horizontal_line" />
+
+                    <TextView
+                        android:id="@+id/description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="512"
+                        android:paddingLeft="10.0dip"
+                        android:paddingRight="10.0dip"
+                        android:singleLine="false"
+                        android:text="@string/information"
+                        android:textColor="#ff818181" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#b0000000"
+        android:visibility="gone"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/tickets"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10.0dip"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginRight="10.0dip"
+            android:layout_marginTop="10.0dip"
+            android:background="@drawable/green_button_background"
+            android:paddingBottom="7.0dip"
+            android:paddingTop="7.0dip"
+            android:text="@string/tickets"
+            android:textColor="@color/white"
+            android:textSize="20.0dip"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- Strings for the categories -->
+    <string name="week">Week</string>
+    <string name="sport">Sport</string>
+    <string name="theatre">Theatre</string>
+    <string name="music">Music</string>
+    <string name="other">Other</string>
+    
+    <!-- String for activity titles. -->
+    <string name="app_name">Stadissa</string>
+
+    <!-- Strings for the notification messages -->
+    <string name="error">An error occurred. Please try again</string>
+    
+    <!-- Strings for the layouts -->
+    <string name="description">Description</string>
+    <string name="time">No time specified</string>
+    <string name="location"></string>
+    <string name="price">No price specified</string>
+    <string name="name"></string>
+    <string name="tickets">Buy tickets</string>
+    <string name="map">Map</string>
+    <string name="information"></string>
+    <string name="share">Share using</string>
+
+</resources>

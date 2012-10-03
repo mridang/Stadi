@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/calendar"
+        android:icon="@drawable/ic_eventdetails_add_to_calendar"
+        android:showAsAction="ifRoom"/>
+    
+    <item
+        android:id="@+id/share"
+        android:icon="@drawable/ic_menu_share_holo_light"
+        android:showAsAction="ifRoom"/>
+
+</menu>
