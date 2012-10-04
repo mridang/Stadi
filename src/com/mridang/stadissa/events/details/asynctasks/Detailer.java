@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.AsyncTask;
@@ -138,10 +139,10 @@ public class Detailer extends AsyncTask<String, Integer, Details> {
         	    mapLocation.getController().setZoom(16);
         	    mapLocation.getController().setCenter(new GeoPoint(intLatitude, intLongitude));
 
-                Mappin mapOverlay = new Mappin(this.objDetail, new GeoPoint(intLatitude, intLongitude));
+                Drawable finalMarker = this.objDetail.getResources().getDrawable(R.drawable.ic_location_marker);
+                finalMarker.setBounds(0, 0, finalMarker.getIntrinsicWidth(), finalMarker.getIntrinsicHeight());
                 List<Overlay> listOfOverlays = mapLocation.getOverlays();
-                listOfOverlays.clear();
-                listOfOverlays.add(mapOverlay);
+                listOfOverlays.add(new Mappin(finalMarker, new GeoPoint(intLatitude, intLongitude)));
 
                 mapLocation.invalidate();
 

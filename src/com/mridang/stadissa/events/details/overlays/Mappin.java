@@ -1,71 +1,62 @@
 package com.mridang.stadissa.events.details.overlays;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Point;
-import android.view.MotionEvent;
+import android.graphics.drawable.Drawable;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapView;
-import com.mridang.stadissa.R;
+import com.google.android.maps.Overlay;
+import com.google.android.maps.Projection;
 
 /*
  * This class is used to draw a custom marker on the map.
  */
-public class Mappin extends com.google.android.maps.Overlay {
+public class Mappin extends Overlay {
+
+    protected Drawable drwMarker;
+    protected GeoPoint gptCoordinates;
 
     /*
-     * The location at which to display the marker
-     */
-    private final GeoPoint geoPoint;
-    /*
-     * The context of the activity containing the map
-     */
-    private final Context ctxContext;
-
-    /*
-     * Initializes this task
+     * Initializes this overlay
      *
-     * @param  geoPoint  The location at which to display the marker
+     * @param  drwMarker       The drwable image to use as an overlay
+     * @param  gptCoordinates  The location at which to display the marker
      */
-    public Mappin(Context ctxContext, GeoPoint geoPoint) {
+    public Mappin(Drawable drwMarker, GeoPoint gptCoordinates) {
 
-        super();
-
-        this.geoPoint = geoPoint;
-        this.ctxContext = ctxContext;
+        this.drwMarker = drwMarker;
+        this.gptCoordinates = gptCoordinates;
 
     }
 
     /*
-     * @see com.google.android.maps.Overlay#onTouchEvent(android.view.MotionEvent, com.google.android.maps.MapView)
+     * @see com.google.android.maps.Overlay#draw(android.graphics.Canvas, com.google.android.maps.MapView, boolean)
      */
     @Override
-    public boolean onTouchEvent(MotionEvent mevEvent, MapView mvwMap) {
+    public void draw(Canvas canCanvas, MapView mapView, boolean booShadow) {
 
-        System.out.println("clicked");
-        return super.onTouchEvent(mevEvent, mvwMap);
+        super.draw(canCanvas, mapView, booShadow);
 
-    }
+        Projection prjProjection = mapView.getProjection();
 
-    /*
-     * @see com.google.android.maps.Overlay#draw(android.graphics.Canvas,
-     * com.google.android.maps.MapView, boolean, long)
-     */
-    @Override
-    public boolean draw(Canvas canCanvas, MapView mvwMap, boolean booShadow, long lngWhen) {
+        Integer x;
+        Integer y;
 
-        super.draw(canCanvas, mvwMap, booShadow);
+        if (!booShadow) {
 
-        Point screenPts = new Point();
-        mvwMap.getProjection().toPixels(this.geoPoint, screenPts);
+            x = prjProjection.toPixels(gptCoordinates, null).x - (drwMarker.getIntrinsicWidth() / 2);
+            y = prjProjection.toPixels(gptCoordinates, null).y - (drwMarker.getIntrinsicHeight());
 
-        Bitmap bmp = BitmapFactory.decodeResource(this.ctxContext.getResources(), R.drawable.ic_location_marker);
-        canCanvas.drawBitmap(bmp, screenPts.x, screenPts.y - 60, null);
+        } else {
 
-        return true;
+            Integer intSign = (SHADOW_X_SKEW > 0 ? 1 : -1);
+            Float fltScaler = 1.1F - Math.abs(SHADOW_X_SKEW);
+            x = (int) (prjProjection.toPixels(gptCoordinates, null).x - (intSign * (drwMarker.getIntrinsicWidth() * fltScaler)));
+            y = (int) (prjProjection.toPixels(gptCoordinates, null).y - (drwMarker.getIntrinsicHeight() * SHADOW_Y_SCALE));
+
+        }
+
+        drawAt(canCanvas, drwMarker, x, y, booShadow);
 
     }
 
