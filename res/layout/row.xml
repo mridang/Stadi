@@ -32,7 +32,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="2.0dip"
-                android:text="15"
                 android:textColor="@color/black"
                 android:textSize="32.0sp" />
         </LinearLayout>
@@ -44,7 +43,6 @@
             android:layout_toRightOf="@id/time"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="Some Event Tomorrow"
             android:textColor="@color/black"
             android:textSize="18.0sp" />
 
@@ -56,7 +54,6 @@
             android:layout_toRightOf="@id/time"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="Theatre"
             android:textColor="@color/black"
             android:textSize="11.0sp" />
 
@@ -68,7 +65,6 @@
             android:layout_toRightOf="@id/time"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="Kaupunginteatteri"
             android:textColor="@color/basic"
             android:textSize="14.0sp" />
     </RelativeLayout>

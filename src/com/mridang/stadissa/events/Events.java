@@ -70,8 +70,6 @@ public class Events extends Fragment implements LoaderCallbacks<ArrayList<Event>
         super.onCreate(savedInstanceState);
         BugSenseHandler.initAndStartSession(this.getActivity(), "f07273d6");
 
-        System.out.println(this.intWeek);
-        System.out.println(savedInstanceState);
         getLoaderManager().initLoader(this.intWeek, savedInstanceState, this);
 
     }
@@ -140,7 +138,7 @@ public class Events extends Fragment implements LoaderCallbacks<ArrayList<Event>
 
         super.onDestroy();
 
-        getLoaderManager().getLoader(this.intWeek).abandon();
+        //getLoaderManager().getLoader(this.intWeek).abandon();
 
     }
 
