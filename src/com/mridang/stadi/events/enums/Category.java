@@ -16,7 +16,6 @@ public enum Category {
      */
     public static Category getEnum(String strCategory) {
 
-        //TODO Check why some records arent being categorized properly.
         if (strCategory.toUpperCase().equals("MUSIIKKI")) {
             return MUSIC;
         } else if (strCategory.toUpperCase().equals("URHEILU")) {

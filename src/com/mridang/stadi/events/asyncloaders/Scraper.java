@@ -122,7 +122,7 @@ public class Scraper extends AsyncTaskLoader<ArrayList<Event>> {
                     strLocation = eleEvent.select("a[title~=.*?|.*]").attr("title").split(patRegex.pattern())[1];
 
                     catType = Category.getEnum(objDocument
-                                .select("div#calendarheader div")
+                                .select("div#calendarheader > div")
                                 .get(eleEvent.parent().elementSiblingIndex())
                                 .text());
 
