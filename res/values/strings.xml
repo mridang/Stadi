@@ -9,7 +9,7 @@
     <string name="other">Other</string>
     
     <!-- String for activity titles. -->
-    <string name="app_name">Stadissa</string>
+    <string name="app_name">Stadi</string>
 
     <!-- Strings for the notification messages -->
     <string name="error">An error occurred. Please try again</string>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/com.mridang.stadissa"
+    xmlns:app="http://schemas.android.com/apk/res/com.mridang.stadi"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <com.mridang.stadissa.widgets.TitlePageIndicator
+    <com.mridang.stadi.widgets.TitlePageIndicator
         android:id="@+id/indicator"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
