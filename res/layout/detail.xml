@@ -8,7 +8,7 @@
         android:id="@+id/progress"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:visibility="gone" />
 
@@ -35,8 +35,7 @@
                     android:layout_width="fill_parent"
                     android:clickable="true"
                     android:layout_height="160.0dip"
-                    android:apiKey="00CE3bsLg93dUHn4u0Qm6-t-IiRHjyn0tvICumQ"/>
-                <!-- android:apiKey="0ReTgVC9kXgj2eHPNwHdw62FHprotYUl7imMwkg" -->
+                    android:apiKey="0ReTgVC9kXgj2eHPNwHdw62FHprotYUl7imMwkg"/>
 
                 <Button
                     android:layout_width="fill_parent"
@@ -143,7 +142,7 @@
                         android:layout_marginBottom="5.0dip"
                         android:paddingTop="5dp" >
 
-                        <TextView
+                        <com.mridang.stadi.widgets.CapitalizedTextView
                             android:layout_width="0.0dip"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"

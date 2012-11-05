@@ -5,7 +5,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <com.mridang.stadi.widgets.TitlePageIndicator
+    <com.viewpagerindicator.TitlePageIndicator
         android:id="@+id/indicator"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

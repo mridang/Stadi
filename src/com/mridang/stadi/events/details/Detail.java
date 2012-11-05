@@ -2,26 +2,28 @@ package com.mridang.stadi.events.details;
 
 import java.net.URI;
 
-import android.app.ActionBar;
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask.Status;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.provider.CalendarContract.Events;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockMapActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
 import com.bugsense.trace.BugSenseHandler;
-import com.google.android.maps.MapActivity;
 import com.mridang.stadi.R;
 import com.mridang.stadi.events.details.asynctasks.Detailer;
 
-public class Detail extends MapActivity {
+public class Detail extends SherlockMapActivity {
 
     /*
      * The instance of the background asynchronous task
@@ -52,7 +54,7 @@ public class Detail extends MapActivity {
         setContentView(R.layout.detail);
         setTitle(this.getIntent().getStringExtra("EVENT_NAME"));
 
-        ActionBar abrAction = getActionBar();
+        ActionBar abrAction = getSupportActionBar();
         abrAction.setDisplayHomeAsUpEnabled(true);
         fetchDetails();
 
@@ -105,18 +107,34 @@ public class Detail extends MapActivity {
         /*
          * @see android.view.MenuItem.OnMenuItemClickListener#onMenuItemClick(android.view.MenuItem)
          */
-        public boolean onMenuItemClick(MenuItem mitItem) {
+        @TargetApi(14)
+		public boolean onMenuItemClick(MenuItem mitItem) {
 
-            Intent ittAdd = new Intent(Intent.ACTION_INSERT);
-            ittAdd.setData(Events.CONTENT_URI);
-            ittAdd.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, (Long) findViewById(R.id.date).getTag());
-            ittAdd.putExtra(Events.TITLE, (String) findViewById(R.id.name).getTag());
-            ittAdd.putExtra(Events.DESCRIPTION, (String) findViewById(R.id.description).getTag());
-            ittAdd.putExtra(Events.EVENT_LOCATION, (String) findViewById(R.id.place).getTag());
-            ittAdd.putExtra(Events.AVAILABILITY, Events.AVAILABILITY_BUSY);
-            ittAdd.putExtra(Events.ALL_DAY, ((Long) findViewById(R.id.date).getTag()) % 86400000L == 0);
-            startActivity(ittAdd);
-            return false;
+        	if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+	            Intent ittAdd = new Intent(Intent.ACTION_INSERT);
+	            ittAdd.setData(Events.CONTENT_URI);
+                ittAdd.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, (Long) findViewById(R.id.date).getTag());
+	            ittAdd.putExtra(Events.TITLE, (String) findViewById(R.id.name).getTag());
+	            ittAdd.putExtra(Events.DESCRIPTION, (String) findViewById(R.id.description).getTag());
+	            ittAdd.putExtra(Events.EVENT_LOCATION, (String) findViewById(R.id.place).getTag());
+	            ittAdd.putExtra(Events.AVAILABILITY, Events.AVAILABILITY_BUSY);
+	            ittAdd.putExtra(Events.ALL_DAY, ((Long) findViewById(R.id.date).getTag()) % 86400000L == 0);
+	            startActivity(ittAdd);
+        	}
+        	if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+        		Intent ittAdd = new Intent(Intent.ACTION_EDIT);
+        		ittAdd.setType("vnd.android.cursor.item/event");
+        		ittAdd.putExtra("beginTime", (Long) findViewById(R.id.date).getTag());
+        		//intent.putExtra("rrule", "FREQ=YEARLY");
+        		//intent.putExtra("endTime", cal.getTimeInMillis()+60*60*1000);
+        		ittAdd.putExtra("title", (String) findViewById(R.id.name).getTag());
+        		ittAdd.putExtra("description", (String) findViewById(R.id.description).getTag());
+        		ittAdd.putExtra("eventLocation", (String) findViewById(R.id.place).getTag());
+        		ittAdd.putExtra("availability", 1);
+        		ittAdd.putExtra("allDay", ((Long) findViewById(R.id.date).getTag()) % 86400000L == 0);
+        		startActivity(ittAdd);
+        	}
+			return false;
 
         }
 
@@ -154,10 +172,9 @@ public class Detail extends MapActivity {
     /*
      * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
      */
-    @Override
     public boolean onCreateOptionsMenu(Menu mnuMenu) {
 
-        getMenuInflater().inflate(R.menu.detail, mnuMenu);
+    	getSupportMenuInflater().inflate(R.menu.detail, mnuMenu);
         mnuMenu.findItem(R.id.share).setOnMenuItemClickListener(oclShare);
         mnuMenu.findItem(R.id.calendar).setOnMenuItemClickListener(oclCalendar);
         return true;
@@ -170,12 +187,12 @@ public class Detail extends MapActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem mitItem) {
 
-        switch (mitItem.getItemId()) {
-            case android.R.id.home: {
-                onBackPressed();
-                return true;
-            }
-        }
+		switch (mitItem.getItemId()) {
+			case android.R.id.home: {
+				onBackPressed();
+				return true;
+			}
+		}
 
         return(super.onOptionsItemSelected(mitItem));
     }
