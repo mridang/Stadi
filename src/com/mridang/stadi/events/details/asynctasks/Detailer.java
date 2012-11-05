@@ -142,7 +142,7 @@ public class Detailer extends AsyncTask<String, Integer, Details> {
                 Drawable finalMarker = this.objDetail.getResources().getDrawable(R.drawable.ic_location_marker);
                 finalMarker.setBounds(0, 0, finalMarker.getIntrinsicWidth(), finalMarker.getIntrinsicHeight());
                 List<Overlay> listOfOverlays = mapLocation.getOverlays();
-                listOfOverlays.add(new Mappin(finalMarker, new GeoPoint(intLatitude, intLongitude)));
+                listOfOverlays.add(new Mappin(finalMarker, new GeoPoint(intLatitude, intLongitude), this.objDetail.getApplicationContext(), objDetails.getPlace()));
 
                 mapLocation.invalidate();
 
