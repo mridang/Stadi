@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- Strings for the categories -->
+    <string name="week">Viikko</string>
+    <string name="sport">Urheilu</string>
+    <string name="theatre">Teatteri</string>
+    <string name="music">Musikki</string>
+    <string name="other">Muut</string>
+    
+    <!-- String for activity titles. -->
+    <string name="app_name">Stadi</string>
+
+    <!-- Strings for the notification messages -->
+    <string name="error">Virhe. Ole hyvä ja kokeile uudestaan.</string>
+    
+    <!-- Strings for the layouts -->
+    <string name="description">Kuvaus</string>
+    <string name="time">Tarkkaa aikaa ei ole tiedossa.</string>
+    <string name="location"></string>
+    <string name="price">Hintatietoja ei ole saatavilla.</string>
+    <string name="name"></string>
+    <string name="tickets">Osta lippu</string>
+    <string name="map">Kartta</string>
+    <string name="from">klo</string>
+    <string name="information"></string>
+    <string name="share">Jaa</string>
+
+</resources>
