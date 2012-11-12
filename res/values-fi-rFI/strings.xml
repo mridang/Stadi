@@ -2,7 +2,7 @@
 <resources>
     
     <!-- Strings for the categories -->
-    <string name="week">Viikko</string>
+    <string name="week">Viikko #</string>
     <string name="sport">Urheilu</string>
     <string name="theatre">Teatteri</string>
     <string name="music">Musikki</string>

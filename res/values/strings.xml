@@ -2,7 +2,7 @@
 <resources>
     
     <!-- Strings for the categories -->
-    <string name="week">Week</string>
+    <string name="week">Week #</string>
     <string name="sport">Sport</string>
     <string name="theatre">Theatre</string>
     <string name="music">Music</string>
