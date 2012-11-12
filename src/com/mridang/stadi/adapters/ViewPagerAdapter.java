@@ -2,10 +2,13 @@ package com.mridang.stadi.adapters;
 
 import java.util.Calendar;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.mridang.stadi.R;
 import com.mridang.stadi.events.Events;
 
 /*
@@ -17,12 +20,16 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     /*
      * This keeps a list of titles for the pages
      */
-    private static Integer[] intWeeks = new Integer[52];
-
+    private Integer[] intWeeks = new Integer[52];
+    /*
+     * This keeps a list of titles for the pages
+     */
+    private Context ctxContext;    
+    
     /*
      * @see android.support.v4.app.FragmentPagerAdapter#getTitle(FragmentManager)
      */
-    public ViewPagerAdapter(FragmentManager fm) {
+    public ViewPagerAdapter(FragmentManager fm, Context ctxContext) {
 
         super(fm);
 
@@ -31,6 +38,8 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             intWeeks[intWeek - 1] = calCalendar.get(Calendar.WEEK_OF_YEAR);
             calCalendar.add(Calendar.DATE, 7);
         }
+        
+        this.ctxContext = ctxContext;
 
     }
 
@@ -40,8 +49,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int intPosition) {
 
-        //TODO Get the string here
-        return "WEEK #" + intWeeks[intPosition].toString().toUpperCase();
+        return this.ctxContext.getString(R.string.week).toUpperCase() + intWeeks[intPosition].toString().toUpperCase();
 
     }
 
@@ -61,6 +69,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int intPosition) {
 
+    	EasyTracker.getTracker().trackEvent("PageSwipes", "Weeks", "View Week", (long) intPosition);
         return Events.newInstance(intWeeks[intPosition]);
 
     }
