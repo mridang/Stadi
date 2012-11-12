@@ -8,6 +8,7 @@ import org.jsoup.nodes.Document;
 
 import android.util.Log;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.mridang.stadi.events.details.Detail;
 import com.mridang.stadi.events.details.helpers.Dates;
 import com.mridang.stadi.events.details.structures.Details;
@@ -139,6 +140,7 @@ public class Stadissa {
 
         } catch (Exception e) {
 
+        	EasyTracker.getTracker().trackException(e.getMessage(), e, false);
             Log.w("scrapers.Details", "Error parsing row", e);
 
         }

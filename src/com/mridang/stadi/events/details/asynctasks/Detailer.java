@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
@@ -37,7 +38,11 @@ public class Detailer extends AsyncTask<String, Integer, Details> {
      * The instance of the calling class
      */
     private Detail objDetail = null;
-
+    /*
+     * The time taken to execute
+     */
+    private Long lngTiming;
+    
     /*
      * @see android.os.AsyncTask#doInBackground(Params[])
      */
@@ -70,6 +75,7 @@ public class Detailer extends AsyncTask<String, Integer, Details> {
     protected void onPreExecute() {
 
         this.objDetail.showProgress();
+        this.lngTiming = System.nanoTime();
 
     }
 
@@ -82,7 +88,7 @@ public class Detailer extends AsyncTask<String, Integer, Details> {
     public Detailer(Detail detail) {
 
         this.objDetail = detail;
-
+        
     }
 
     /*
@@ -91,8 +97,11 @@ public class Detailer extends AsyncTask<String, Integer, Details> {
     @Override
     protected void onPostExecute(final Details objDetails) {
 
+    	this.lngTiming = System.nanoTime() - this.lngTiming;
         this.objDetail.hideProgress();
 
+        EasyTracker.getTracker().trackTiming("AsyncTasks", this.lngTiming, "Detailer", "Get Event");
+        
         if (objDetails == null) {
 
             Toast.makeText(this.objDetail, R.string.error, Toast.LENGTH_LONG).show();
