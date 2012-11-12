@@ -18,6 +18,7 @@ import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.mridang.stadi.events.enums.Category;
 import com.mridang.stadi.events.helpers.Dates;
 import com.mridang.stadi.events.structures.Event;
@@ -36,6 +37,10 @@ public class Scraper extends AsyncTaskLoader<ArrayList<Event>> {
      * This contains a cached copy of the results.
      */
     private ArrayList<Event> lstEvents;
+    /*
+     * The time taken to execute
+     */
+    private Long lngTiming;
 
     /*
      * This method initializes the scraper.
@@ -79,6 +84,8 @@ public class Scraper extends AsyncTaskLoader<ArrayList<Event>> {
             Log.w("scrapers.Stadissa", "Unable to load serialized data", e);
         }
 
+    	this.lngTiming = System.nanoTime();
+        
         Document objDocument;
         ArrayList<Event> objEvents = new ArrayList<Event>();
         Network objNetwork = new Network();
@@ -143,7 +150,9 @@ public class Scraper extends AsyncTaskLoader<ArrayList<Event>> {
         Collections.reverse(objEvents);
 
         this.lstEvents = objEvents;
+    	this.lngTiming = System.nanoTime() - this.lngTiming;
 
+    	EasyTracker.getTracker().trackTiming("AsyncLoaders", this.lngTiming, "Scraper", "Get Week Events");
 
         // Let's save the data in a serialized format if it doesn't exist
         try {
