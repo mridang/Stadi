@@ -20,6 +20,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
 import com.bugsense.trace.BugSenseHandler;
+import com.google.analytics.tracking.android.EasyTracker;
 import com.mridang.stadi.R;
 import com.mridang.stadi.events.details.asynctasks.Detailer;
 
@@ -30,6 +31,17 @@ public class Detail extends SherlockMapActivity {
      */
     private Detailer objDetailer;
 
+    /*
+     * @see android.app.Activity#onStart()
+     */
+    @Override
+    public void onStart() {
+
+    	super.onStart();
+    	EasyTracker.getInstance().activityStart(this);
+
+    }
+    
     /*
      * This shows a full screen loading animation
      */
@@ -80,6 +92,7 @@ public class Detail extends SherlockMapActivity {
          */
         public boolean onMenuItemClick(MenuItem mitItem) {
 
+        	EasyTracker.getTracker().trackEvent("OnClicks", "Share", "Share Event", null);
             Intent ittShare = new Intent(Intent.ACTION_SEND).setType("text/plain");
             ittShare.putExtra(Intent.EXTRA_TEXT, (String) findViewById(R.id.description).getTag());
             Detail.this.startActivity(Intent.createChooser(ittShare, getString(R.string.share)));
@@ -111,6 +124,7 @@ public class Detail extends SherlockMapActivity {
 		public boolean onMenuItemClick(MenuItem mitItem) {
 
         	if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+        		EasyTracker.getTracker().trackEvent("OnClicks", "Calendar", "Add Event", null);
 	            Intent ittAdd = new Intent(Intent.ACTION_INSERT);
 	            ittAdd.setData(Events.CONTENT_URI);
                 ittAdd.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, (Long) findViewById(R.id.date).getTag());
@@ -122,6 +136,7 @@ public class Detail extends SherlockMapActivity {
 	            startActivity(ittAdd);
         	}
         	if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+        		EasyTracker.getTracker().trackEvent("OnClicks", "Calendar", "Add Event", null);
         		Intent ittAdd = new Intent(Intent.ACTION_EDIT);
         		ittAdd.setType("vnd.android.cursor.item/event");
         		ittAdd.putExtra("beginTime", (Long) findViewById(R.id.date).getTag());
@@ -160,6 +175,7 @@ public class Detail extends SherlockMapActivity {
          */
         public void onClick(View vewView) {
 
+        	EasyTracker.getTracker().trackEvent("OnClicks", "Tickets", "Buy Tickets", null);
             String strTickets = ((URI) vewView.getTag()).toString();
             Intent ittTickets = new Intent(Intent.ACTION_VIEW, Uri.parse(strTickets));
             Detail.this.startActivity(ittTickets);
@@ -223,6 +239,17 @@ public class Detail extends SherlockMapActivity {
 
         ScrollView svwScroll = (ScrollView) findViewById(R.id.scroll);
         svwScroll.setVisibility(View.VISIBLE);
+
+    }
+
+    /*
+     * @see com.actionbarsherlock.app.SherlockActivity#onStop()
+     */
+    @Override
+    public void onStop() {
+
+      super.onStop();
+      EasyTracker.getInstance().activityStop(this);
 
     }
 
